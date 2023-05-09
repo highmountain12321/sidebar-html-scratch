@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="./temp2.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <span>LightningTransfers</span>
+            <div class="user-icon">
+                <i class="fas fa-user"></i>
+                <span class="login-badge"></span>
+            </div>
+        </div>
+        <h1 onclick="alert('Dashboard')">Dashboard</h1>
+        <h1 onclick="alert('Activity')">Activity</h1>
+        <h2>Tools</h2>
+        <div class="menu-item" onclick="alert('Developers')">
+            <span>Developers</span>
+            <i class="fas fa-chevron-right right-arrow"></i>
+        </div>
+        <h2>Actions</h2>
+        <div class="menu-item" onclick="showRightSidebar('make-deposit')">
+            <span>Make a Deposit</span>
+            <i class="fas fa-chevron-right right-arrow"></i>
+        </div>
+        <!-- More action items... -->
+    </div>
+    <div class="backdrop" id="backdrop" onclick="hideRightSidebar();"></div>
+    <div class="right-sidebar" id="make-deposit">
+        <div class="d-flex align-items-center">
+            <h2>Make a Deposit</h2>
+            <button class="close-button" onclick="hideRightSidebar()">&times;</button>
+        </div>
+        <div class="qr-code">
+            <h3>Your Wallet Address</h3>
+            <div class="qr-code-container">
+                <img src="https://www.qr-code-generator.com/wp-content/themes/qr/new_structure/markets/core_market/generator/dist/generator/assets/images/websiteQRCode_noFrame.png" alt="QR Code" width="100%">
+            </div>
+        </div>
+        <div class="currency-section">
+            <h3 class="currency-title">CURRENCY</h3>
+            <select>
+                <option>BTC</option>
+                <option>ETH</option>
+                <option>DOT</option>
+                <!-- More options... -->
+            </select>
+        </div>
+        <div class="wallet-address">
+            <h3 class="wallet-address-title">Wallet address</h3>
+            <input type="text" class="wallet-address-input" value="1A2b3C4d5E6F7g8H9iJ0kL1M2nO3P4Q5R6S7T8U9V0WxYzZ" readonly>
+            <button onclick="copyWalletAddress();"><i class="fas fa-copy"></i></button>
+        </div>
+        <button onclick="hideRightSidebar();">Back</button>
+    </div>
+    <script>
+        function showRightSidebar(id) {
+            document.getElementById(id).classList.add('active');
+            document.getElementById('backdrop').classList.add('active');
+        }
+
+        function hideRightSidebar() {
+            document.getElementById('make-deposit').classList.remove('active');
+            document.getElementById('backdrop').classList.remove('active');
+        }
+
+        function copyWalletAddress() {
+            const input = document.querySelector('.wallet-address-input');
+            input.select();
+            document.execCommand('copy');
+            alert('Wallet address copied to clipboard!');
+        }
+    </script>
+</body>
+</html>
+

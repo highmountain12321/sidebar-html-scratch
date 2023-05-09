@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./temp.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <span>Lightning</span>
+            <div class="user-icon">
+                <i class="fas fa-user"></i>
+                <span class="login-badge"></span>
+            </div>
+        </div>
+
+        <div class="title-item">
+            <h2 class="sidebar-title" onclick="alert('Dashboard')">Dashboard</h2>
+            <i class="fas fa-arrow-right right-arrow"></i>
+        </div>
+        <div class="title-item">
+            <h2 class="sidebar-title" onclick="alert('Activity')">Activity</h2>
+            <i class="fas fa-arrow-right right-arrow"></i>
+        </div>
+        <div class="left-section">
+            <h6 class="left-section-title">Tools</h6>
+            <div class="title-item">
+                <h2 class="sidebar-title" onclick="alert('Developers')">Developers</h2>
+                <i class="fas fa-arrow-right right-arrow"></i>
+            </div>    
+        </div>
+        <div class="left-section">
+            <h6 class="left-section-title">Actions</h6>
+            <div class="menu-item align-items-center" onclick="showRightSidebar('make-deposit')">
+                <div class="d-flex align-items-center"><span class="icon-wrapper"><i class="fas fa-plus"></i></span> Make a deposit</div>
+                <i class="fas fa-arrow-right right-arrow"></i>
+            </div>
+            <div class="menu-item align-items-center" onclick="showRightSidebar('make-deposit')">
+                <div class="d-flex align-items-center"><span class="icon-wrapper"><i class="fas fa-minus"></i></span> Make a withdrawal</div>
+                <i class="fas fa-arrow-right right-arrow"></i>
+            </div>
+            <div class="menu-item align-items-center" onclick="showRightSidebar('make-deposit')">
+                <div class="d-flex align-items-center"><span class="icon-wrapper"><i class="fas fa-exchange-alt"></i></span> Transfer</div>
+                <i class="fas fa-arrow-right right-arrow"></i>
+            </div>
+            <div class="menu-item align-items-center" onclick="showRightSidebar('make-deposit')">
+                <div class="d-flex align-items-center"><span class="icon-wrapper"><i class="fas fa-sync-alt"></i></span> Exchange</div>
+                <i class="fas fa-arrow-right right-arrow"></i>
+            </div>
+            <div class="menu-item align-items-center" onclick="showRightSidebar('make-deposit')">
+                <div class="d-flex align-items-center"><span class="icon-wrapper"><i class="fas fa-question"></i></span> Support</div>
+                <i class="fas fa-arrow-right right-arrow"></i>
+            </div>
+        </div>
+        
+    </div>
+    <div class="backdrop" id="backdrop" onclick="hideRightSidebar()"></div>
+    <div class="right-sidebar" id="make-deposit">
+        <div class="right-sidebar-title d-flex align-items-center justify-between">
+            <h2>Make a Deposit</h2>
+            <button class="close-button" onclick="hideRightSidebar()">&times;</button>
+        </div>
+        <div class="qr-section">
+            <p>Your Wallet Address</p>
+            <div class="qr-code">
+                <div class="qr-code-container">
+                    <img src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=bitcoin:1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa&choe=UTF-8" alt="QR Code" style="height: 100%;">
+                </div>
+            </div>
+        </div>
+        <div class="currency-section">
+            <p class="currency-title">CURRENCY</p>
+            <select>
+                <option value="BTC">BTC</option>
+                <option value="ETH">ETH</option>
+                <option value="DOT">DOT</option>
+                <!-- Add more options as needed -->
+            </select>
+        </div>
+        <div class="currency-section">
+            <p class="currency-title">Wallet Address</p>
+            <div class="wallet-input-section">
+                <input type="text" class="wallet-address-input" id="wallet-address" value="0x123abc..." readonly>
+                <button class="wallet-copy-btn" onclick="copyAddress()"><i class="copy-icon far fa-copy"></i></button>  
+            </div>
+            
+        </div>
+        <button class="back-btn" onclick="hideRightSidebar()">Back</button>
+    </div>
+    <script>
+        function showRightSidebar(id) {
+            const rightSidebar = document.getElementById(id);
+            const backdrop = document.getElementById('backdrop');
+            rightSidebar.classList.add('active');
+            backdrop.classList.add('active');
+        }
+
+        function hideRightSidebar() {
+            const rightSidebar = document.getElementsByClassName('right-sidebar');
+            const backdrop = document.getElementById('backdrop');
+            for (let i = 0; i < rightSidebar.length; i++) {
+                rightSidebar[i].classList.remove('active');
+            }
+            backdrop.classList.remove('active');
+        }
+
+        function copyAddress() {
+            const walletAddressInput = document.getElementById('wallet-address');
+            walletAddressInput.select();
+            walletAddressInput.setSelectionRange(0, 99999); // For mobile devices
+            document.execCommand('copy');
+            alert('Wallet address copied to clipboard');
+        }
+    </script>
+</body>
+</html>
+
+
